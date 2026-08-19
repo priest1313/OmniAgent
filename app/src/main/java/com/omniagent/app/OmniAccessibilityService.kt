@@ -1,7 +1,6 @@
 package com.omniagent.app
 
 import android.accessibilityservice.AccessibilityService
-import android.accessibilityservice.AccessibilityServiceInfo
 import android.util.Log
 import android.view.accessibility.AccessibilityEvent
 
@@ -14,21 +13,11 @@ class OmniAccessibilityService : AccessibilityService() {
     override fun onServiceConnected() {
         super.onServiceConnected()
         Log.d(TAG, "OmniAgent Accessibility Service Connected Successfully.")
-
-        val info = AccessibilityServiceInfo().apply {
-            eventTypes = AccessibilityEvent.TYPES_ALL_MASK
-            feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
-            // استفاده از مقدار مستقیم و استاندارد برای پرچم‌ها بدون خطای کامپایل
-            flags = AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
-            notificationTimeout = 100
-        }
-        serviceInfo = info
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent) {
         val eventType = event.eventType
         val packageName = event.packageName?.toString() ?: "unknown"
-
         Log.d(TAG, "Event captured from package: $packageName | Type: $eventType")
     }
 
