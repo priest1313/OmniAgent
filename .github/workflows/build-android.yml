@@ -17,7 +17,14 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
+
     - name: Build with Gradle
-      run: |
-        # این بخش به صورت خودکار نسخه گریدل را دانلود می‌کند
-        ./gradlew --version || (curl -s "https://services.gradle.org/distributions/gradle-8.0-bin.zip" -o gradle-8.0-bin.zip && unzip gradle-8.0-bin.zip && ./gradle-8.0/bin/gradle assembleDebug)
+      run: gradle assembleDebug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug
+        path: app/build/outputs/apk/debug/app-debug.apk
