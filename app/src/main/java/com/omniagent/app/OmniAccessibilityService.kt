@@ -18,7 +18,8 @@ class OmniAccessibilityService : AccessibilityService() {
         val info = AccessibilityServiceInfo().apply {
             eventTypes = AccessibilityEvent.TYPES_ALL_MASK
             feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
-            flags = AccessibilityServiceInfo.FLAG_DEFAULT or
+            // اصلاح نحوه فراخوانی پرچم‌ها برای سازگاری کامل با کامپایلر کاتلین
+            flags = AccessibilityServiceInfo.DEFAULT or
                     AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
             notificationTimeout = 100
         }
@@ -30,7 +31,6 @@ class OmniAccessibilityService : AccessibilityService() {
         val packageName = event.packageName?.toString() ?: "unknown"
 
         Log.d(TAG, "Event captured from package: $packageName | Type: $eventType")
-        // اینجا در قدم‌های بعدی منطق تصمیم‌گیری و ارتباط ایجنت قرار می‌گیرد
     }
 
     override fun onInterrupt() {
