@@ -18,9 +18,8 @@ class OmniAccessibilityService : AccessibilityService() {
         val info = AccessibilityServiceInfo().apply {
             eventTypes = AccessibilityEvent.TYPES_ALL_MASK
             feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
-            // اصلاح نحوه فراخوانی پرچم‌ها برای سازگاری کامل با کامپایلر کاتلین
-            flags = AccessibilityServiceInfo.DEFAULT or
-                    AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
+            // استفاده از مقدار مستقیم و استاندارد برای پرچم‌ها بدون خطای کامپایل
+            flags = AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS
             notificationTimeout = 100
         }
         serviceInfo = info
